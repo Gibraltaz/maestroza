@@ -10,7 +10,6 @@ type GbzTranslationCatalog = Record<GbzLanguageCode, GbzTranslationTable>;
 const defaultLang: GbzLanguageCode = 'en';
 
 type GbzTranslationFunction = (
-  translationCatalog: GbzTranslationCatalog,
   lang: GbzLanguageCode,
   msgId:MtzTranslationId,
   msgParams?: Record<string, unknown>
@@ -27,7 +26,7 @@ const interpolateString: GbzInterpolationFunction = (str: string, params?: GbzIn
   return str;
 };
 
-const translateFromCatalog: GbzTranslationFunction = (
+const translateFromCatalog = (
   translationCatalog: GbzTranslationCatalog,
   lang: GbzLanguageCode,
   msgId:MtzTranslationId,
@@ -60,6 +59,24 @@ const mergeTranslationCatalog = (translationCatalog: GbzTranslationCatalog) => {
   });
 }
 
+
+const translate: GbzTranslationFunction = (
+  lang: GbzLanguageCode,
+  msgId:MtzTranslationId,
+  msgParams?: Record<string, unknown>
+) => {
+  let translationTable = globalTranslationCatalog[lang];
+  if (translationTable === undefined)
+    translationTable = globalTranslationCatalog[defaultLang];
+  let msgStr = translationTable[msgId];
+  if (msgStr === undefined && lang !== defaultLang)
+    msgStr = translationTable[defaultLang];
+  if (msgStr === undefined)
+    msgStr = msgId;
+  return interpolateString(msgStr, msgParams);
+};
+
+
 class TranslatableText {
   private readonly _translationId: MtzTranslationId;
 
@@ -81,7 +98,9 @@ class TranslatableText {
 export {
   interpolateString,
   translateFromCatalog,
-  mergeTranslationCatalog, globalTranslationCatalog,
+  mergeTranslationCatalog,
+  translate,
+  globalTranslationCatalog,
   TranslatableText,
 };
 
