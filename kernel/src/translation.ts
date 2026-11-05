@@ -44,5 +44,49 @@ const translate: GbzTranslationFunction = (
   return interpolateString(msgStr, msgParams);
 };
 
-export { interpolateString, translate };
-export type { GbzInterpolationFunction, GbzInterpolationParams };
+
+let globalTranslationCatalog: GbzTranslationCatalog;
+
+const mergeTranslationCatalog = (translationCatalog: GbzTranslationCatalog) => {
+  if (globalTranslationCatalog === undefined)
+    globalTranslationCatalog = {};
+  Object.entries(translationCatalog).forEach(([lang, translationTable]) => {
+    if (globalTranslationCatalog[lang] === undefined)
+      globalTranslationCatalog[lang] = {};
+    const targetTranslationTable = globalTranslationCatalog[lang];
+    Object.entries(translationTable).forEach(([translationId, translationString]) => {
+      targetTranslationTable[translationId] = translationString;
+    });
+  });
+}
+
+class TranslatableText {
+  private readonly _translationId: MtzTranslationId;
+
+  constructor(translationId: MtzTranslationId) {
+    this._translationId = translationId;
+  }
+
+  get translationId () {
+    return this._translationId;
+  }
+
+  translate(lang: GbzLanguageCode, msgParams?: Record<string, unknown>): string {
+    if (globalTranslationCatalog === undefined)
+      throw new Error("Translation catalog not initialized");
+    return translate(globalTranslationCatalog, lang, this._translationId, msgParams);
+  }
+}
+
+export {
+  interpolateString,
+  translate,
+  mergeTranslationCatalog, globalTranslationCatalog,
+  TranslatableText,
+};
+
+export type {
+  GbzInterpolationFunction,
+  GbzInterpolationParams,
+  GbzTranslationCatalog
+};
