@@ -27,7 +27,7 @@ const interpolateString: GbzInterpolationFunction = (str: string, params?: GbzIn
   return str;
 };
 
-const translate: GbzTranslationFunction = (
+const translateFromCatalog: GbzTranslationFunction = (
   translationCatalog: GbzTranslationCatalog,
   lang: GbzLanguageCode,
   msgId:MtzTranslationId,
@@ -71,16 +71,16 @@ class TranslatableText {
     return this._translationId;
   }
 
-  translate(lang: GbzLanguageCode, msgParams?: Record<string, unknown>): string {
+  translateFromCatalog(lang: GbzLanguageCode, msgParams?: Record<string, unknown>): string {
     if (globalTranslationCatalog === undefined)
       throw new Error("Translation catalog not initialized");
-    return translate(globalTranslationCatalog, lang, this._translationId, msgParams);
+    return translateFromCatalog(globalTranslationCatalog, lang, this._translationId, msgParams);
   }
 }
 
 export {
   interpolateString,
-  translate,
+  translateFromCatalog,
   mergeTranslationCatalog, globalTranslationCatalog,
   TranslatableText,
 };

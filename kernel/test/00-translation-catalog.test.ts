@@ -9,7 +9,6 @@ import { GbzTranslationCatalog, mergeTranslationCatalog, globalTranslationCatalo
 
 describe("Translation catalog", () => {
 
-
   it("should merge a first catalog", () => {
 
     const catalog: GbzTranslationCatalog = {
@@ -107,7 +106,6 @@ describe("Translation catalog", () => {
     };
     mergeTranslationCatalog(catalog);
 
-    console.log("dOm globalTranslationCatalog", globalTranslationCatalog);
     expect(globalTranslationCatalog).not.to.equal(undefined);
     expect(globalTranslationCatalog).to.be.instanceOf(Object);
 
@@ -128,7 +126,5 @@ describe("Translation catalog", () => {
     expect(globalTranslationCatalog.de).to.have.property('lang', 'Deutsch');
     expect(globalTranslationCatalog.de).to.have.property('hello', 'Guten tag');
   });
-
-
 
 });

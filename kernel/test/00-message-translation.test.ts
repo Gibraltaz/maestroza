@@ -5,7 +5,7 @@
 
 import { describe, it, expect } from "vitest";
 
-import { translate } from '../src/translation.js';
+import { translateFromCatalog } from '../src/translation.js';
 
 const translationCatalog = {
   en: {
@@ -25,25 +25,25 @@ describe("Message translation", () => {
 
     it("should translate in english", () => {
       expect(
-        translate(translationCatalog, 'en', 'abc' )
+        translateFromCatalog(translationCatalog, 'en', 'abc' )
       ).to.equal("Aen-Ben-Cen");
     });
 
     it("should translate in french", () => {
       expect(
-        translate(translationCatalog, 'fr', 'abc' )
+        translateFromCatalog(translationCatalog, 'fr', 'abc' )
       ).to.equal("Afr-Bfr-Cfr");
     });
 
     it("should translate unknown lang in english", () => {
       expect(
-        translate(translationCatalog, 'de', 'abc' )
+        translateFromCatalog(translationCatalog, 'de', 'abc' )
       ).to.equal("Aen-Ben-Cen");
     });
 
     it("should not translate unknown message ID", () => {
       expect(
-        translate(translationCatalog, 'en', 'zzz' )
+        translateFromCatalog(translationCatalog, 'en', 'zzz' )
       ).to.equal("zzz");
     });
 
@@ -53,34 +53,34 @@ describe("Message translation", () => {
 
     it("should translate in english", () => {
       expect(
-        translate(translationCatalog, 'en', 'def', { p1:'A', p2:'B' } )
+        translateFromCatalog(translationCatalog, 'en', 'def', { p1:'A', p2:'B' } )
       ).to.equal("en P1:A P2:B");
     });
 
     it("should translate in french", () => {
       expect(
-        translate(translationCatalog, 'fr', 'def', { p1:'A', p2:'B' } )
+        translateFromCatalog(translationCatalog, 'fr', 'def', { p1:'A', p2:'B' } )
       ).to.equal("fr P1:A P2:B");
     });
 
     it("should translate unknown lang in english", () => {
       expect(
-        translate(translationCatalog, 'zz', 'def', { p1:'A', p2:'B' } )
+        translateFromCatalog(translationCatalog, 'zz', 'def', { p1:'A', p2:'B' } )
       ).to.equal("en P1:A P2:B");
     });
 
     it("should accept all missing arguments", () => {
       expect(
-        translate(translationCatalog, 'en', 'def' )
+        translateFromCatalog(translationCatalog, 'en', 'def' )
       ).to.equal("en P1:{{p1}} P2:{{p2}}");
     });
 
     it("should accept one missing argument", () => {
       expect(
-        translate(translationCatalog, 'en', 'def', { p1:'A' } )
+        translateFromCatalog(translationCatalog, 'en', 'def', { p1:'A' } )
       ).to.equal("en P1:A P2:{{p2}}");
       expect(
-        translate(translationCatalog, 'en', 'def', { p2:'B' } )
+        translateFromCatalog(translationCatalog, 'en', 'def', { p2:'B' } )
       ).to.equal("en P1:{{p1}} P2:B");
     });
 
