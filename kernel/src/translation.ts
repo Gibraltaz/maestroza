@@ -1,8 +1,8 @@
 type GbzInterpolationParams = Record<string, unknown>;
 type GbzInterpolationFunction = (msgCode:string, msgParams?: Record<string, unknown>) => string;
 
-type GbzMessageId = string;
-type GbzTranslationTable = Record<GbzMessageId, string>;
+type MtzTranslationId = string;
+type GbzTranslationTable = Record<MtzTranslationId, string>;
 
 type GbzLanguageCode = string;
 type GbzTranslationCatalog = Record<GbzLanguageCode, GbzTranslationTable>;
@@ -12,25 +12,25 @@ const defaultLang: GbzLanguageCode = 'en';
 type GbzTranslationFunction = (
   translationCatalog: GbzTranslationCatalog,
   lang: GbzLanguageCode,
-  msgId:GbzMessageId,
+  msgId:MtzTranslationId,
   msgParams?: Record<string, unknown>
 ) => string;
 
-const interpolateMessage: GbzInterpolationFunction = (message: string, params?: GbzInterpolationParams): string => {
+const interpolateString: GbzInterpolationFunction = (str: string, params?: GbzInterpolationParams): string => {
   if (params !== undefined) {
     Object.entries(params).forEach( ([key, value]) => {
       if (value === undefined || value === null)
         value = '?';
-      message = message.replaceAll(`{{${key}}}`, String(value));
+      str = str.replaceAll(`{{${key}}}`, String(value));
     });
   }
-  return message;
+  return str;
 };
 
-const translateMessage: GbzTranslationFunction = (
+const translate: GbzTranslationFunction = (
   translationCatalog: GbzTranslationCatalog,
   lang: GbzLanguageCode,
-  msgId:GbzMessageId,
+  msgId:MtzTranslationId,
   msgParams?: Record<string, unknown>
 ) => {
   let translationTable = translationCatalog[lang];
@@ -41,8 +41,8 @@ const translateMessage: GbzTranslationFunction = (
     msgStr = translationTable[defaultLang];
   if (msgStr === undefined)
     msgStr = msgId;
-  return interpolateMessage(msgStr, msgParams);
+  return interpolateString(msgStr, msgParams);
 };
 
-export { interpolateMessage, translateMessage };
+export { interpolateString, translate };
 export type { GbzInterpolationFunction, GbzInterpolationParams };
