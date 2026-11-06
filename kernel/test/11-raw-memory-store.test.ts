@@ -6,7 +6,7 @@
 import { describe, it, expect } from "vitest";
 
 import { RawMemoryStore } from "../src/store/RawMemoryStore";
-import { ElementName, ElementPath, MtzElement } from "@/Element";
+import { ElementName, ElementPath, MtzElement } from "../src/Element";
 
 describe("Raw memory store", () => {
 

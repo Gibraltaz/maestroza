@@ -1,9 +1,27 @@
 {
   "private": true,
   "workspaces": [
-    "core-lib"
+    "translation",
+    "kernel",
+    "core",
+    "platform",
+    "client",
+    "shell",
+    "backend",
+    "frontend",
+    "ext/couchdb-store"
   ],
+  "allowScripts": {
+    "esbuild": true
+  },
   "scripts": {
-    "test": "npm run test -w core-lib"
+    "build": "npm run build --workspaces --if-present",
+    "test": "npm run rest --workspaces --if-present"
+  },
+    "devDependencies": {
+    "@types/node": "26.6.6",
+    "typescript": "7.0.2",
+    "vitest": "5.1.0",
+    "tsx": "4.23.15"
   }
 }

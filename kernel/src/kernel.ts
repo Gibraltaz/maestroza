@@ -10,6 +10,12 @@ import { RawMemoryStore } from "./store/RawMemoryStore.js";
 import { ContainerDeclaration } from './Tree.js';
 import { TypeDeclaration } from "./typeHandlers/TypeHandler.js";
 
+/*
+import enTranslationCatalog from './translations/en.json';
+import frTranslationCatalog from './translations/fr.json';
+import { mergeTranslationCatalog, translate } from "@maestrozo/translation";
+*/
+
 const VERSION = '0.0.1';
 
 type MaestrozoKernelInitializeFunction = (store: MaestrozoStore) => Promise<void>;
@@ -21,6 +27,8 @@ type MaestrozoKernelModifiyElementFunction = (element: MtzElement) => Promise<vo
 type MaestrozoKernelStoreNewElement = (element: MtzElement) => Promise<void>;
 type MaestrozoKernelCreateElementFunction =
   (elementName:ElementName, parentPath:ElementPath, typePath:ElementPath, params: Record<string,any>) => Promise<MtzElement>;
+
+
 
 type MaestrozoKernel = {
   initialize: MaestrozoKernelInitializeFunction,
@@ -34,7 +42,16 @@ type MaestrozoKernel = {
   declareType: MaestrozoKernelDeclareType ,
 };
 
+
 const maestrozoKernel = async (runtimeStore?: MaestrozoStore) : Promise<MaestrozoKernel> => {
+
+  /*
+  mergeTranslationCatalog({
+    en: enTranslationCatalog,
+    fr: frTranslationCatalog
+  });
+  */
+
   const tree = new MtzTree();
   if (runtimeStore === undefined)
     runtimeStore = new RawMemoryStore();

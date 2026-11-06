@@ -9,7 +9,7 @@ import { ElementData, MemoryStore } from '@maestrozo/kernel';
 
 import { MtzTree } from "../src/Tree";
 import { BuildElementDataCallback, BuildElementDataFunction, BuildElementDataHelpers } from "../src/typeHandlers/elementTypeHandler";
-import { ElementName, ElementPath } from "@/Element";
+import { ElementName, ElementPath } from "../src/Element";
 
 const customElementBuildElementDataFunction1: BuildElementDataFunction = async (
   _elementName: ElementName,

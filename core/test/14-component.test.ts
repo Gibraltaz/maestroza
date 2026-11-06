@@ -24,7 +24,7 @@ describe("Component type", () => {
         [ '#', 'types', 'component' ] as ElementPath,
         {}
       )
-    ).rejects.toThrow("Cannot instantiate component type «/#/types/component»");
+    ).rejects.toThrow("Cannot instanciate component type «/#/types/component»");
   });
 
 });

@@ -14,19 +14,13 @@
     "test_watch": "vitest --watch"
   },
   "dependencies": {
-    "@maestrozo/client-lib": "file:../client",
+    "@maestrozo/client-lib": "*",
     "commander": "^15.0.0",
     "nconf": "^0.13.0",
     "readline": "^1.3.0",
     "vitest": "^5.0.5"
   },
   "devDependencies": {
-    "@types/nconf": "^0.10.7",
-    "@types/node": "^26.6.5",
-    "tsx": "^4.23.15",
-    "typescript": "^7.0.2"
-  },
-  "allowScripts": {
-    "esbuild": true
+    "@types/nconf": "^0.10.7"
   }
 }

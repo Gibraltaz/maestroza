@@ -41,8 +41,6 @@ const main = async () => {
   if (options.port !== undefined)
     shellContext.serverPort = options.port;
 
-  console.log("dOm context", shellContext);
-
   const rl = createInterface({
       input: stdin,
       output: stdout,

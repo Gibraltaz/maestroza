@@ -14,23 +14,16 @@
     "test_watch": "vitest --watch"
   },
   "dependencies": {
-    "@maestrozo/core": "file:../core",
-    "@maestrozo/couchdb-store": "file:../ext/couchdb-store",
-    "@maestrozo/kernel": "file:../kernel",
+    "@maestrozo/core": "*",
+    "@maestrozo/couchdb-store": "*",
+    "@maestrozo/kernel": "*",
+    "@maestrozo/platform": "*",
     "commander": "^15.0.0",
     "express": "^5.2.1",
-    "maestrozo-platform": "file:../platform",
     "nconf": "^0.13.0",
     "vitest": "^5.0.5"
   },
   "devDependencies": {
-    "@types/express": "^5.0.6",
-    "@types/nconf": "^0.10.7",
-    "@types/node": "^26.6.5",
-    "tsx": "^4.23.15",
-    "typescript": "^7.0.2"
-  },
-  "allowScripts": {
-    "esbuild": true
+    "@types/express": "^5.0.6"
   }
 }

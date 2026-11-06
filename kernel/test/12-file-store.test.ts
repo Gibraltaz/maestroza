@@ -11,7 +11,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { rm } from "node:fs/promises";
-import { MtzElement, ElementName, ElementPath } from "@/Element";
+import { MtzElement, ElementName, ElementPath } from "../src/Element";
 
 const tmpFilePath = (prefix:string) =>join( tmpdir(), `${prefix}-${randomUUID()}.tmp`);
 

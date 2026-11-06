@@ -1,5 +1,5 @@
 {
-  "name": "maestrozo-platform",
+  "name": "@maestrozo/platform",
   "version": "0.0.1",
   "description": "",
   "author": "Dominique Parisot <dominique@gibraltaz.fr>",
@@ -22,17 +22,8 @@
     "test": "vitest",
     "test:watch": "vitest --watch"
   },
-  "devDependencies": {
-    "@types/node": "^25.9.5",
-    "tsx": "^4.21.0",
-    "typescript": "^6.0.3",
-    "vitest": "^4.1.5"
-  },
-  "allowScripts": {
-    "esbuild": true
-  },
   "dependencies": {
-    "@maestrozo/core": "file:../core",
-    "@maestrozo/kernel": "file:../kernel"
+    "@maestrozo/core": "*",
+    "@maestrozo/kernel": "*"
   }
 }

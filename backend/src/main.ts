@@ -4,12 +4,12 @@
  */
 import { program } from 'commander';
 
-import { maestrozoPlatform } from 'maestrozo-platform';
+import { maestrozoPlatform } from '@maestrozo/platform';
 import { CouchDbStore } from '@maestrozo/couchdb-store';
+import { MemoryStore, type MaestrozoStore } from '@maestrozo/kernel';
 
 import { loadConfig, StoreType } from './config.js';
 import { startServer } from './server.js';
-import { MemoryStore, type MaestrozoStore } from '@maestrozo/kernel';
 import { loadPluginArray } from './plugin.js';
 
 const main = async () => {
