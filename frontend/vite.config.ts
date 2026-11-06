@@ -7,4 +7,17 @@ export default defineConfig({
     react(),
     babel({ presets: [reactCompilerPreset()] })
   ],
+  server: {
+    host: "0.0.0.0",
+    port: 9100,
+    allowedHosts: true,
+    proxy: {
+      '/api': {
+          target: 'http://localhost:9101', // Adresse backend
+          //changeOrigin: true,
+          //pathRewrite: { '^/api': '' },
+      }
+    }
+  },
+
 })
