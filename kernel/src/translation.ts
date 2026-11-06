@@ -65,6 +65,13 @@ const translate: GbzTranslationFunction = (
   msgId:MtzTranslationId,
   msgParams?: Record<string, unknown>
 ) => {
+  // pour les autotests internes, le module n'est pas obligatoirement initialisé
+  if (globalTranslationCatalog === undefined) {
+    let msgStr = msgId;
+    if (msgParams !== undefined && Object.keys(msgParams).length > 0)
+      msgStr += ' (' + Object.entries(msgParams).map(([key, value]) => `${key}=${String(value)}`).join(', ') + ')';
+    return msgStr;
+  }
   let translationTable = globalTranslationCatalog[lang];
   if (translationTable === undefined)
     translationTable = globalTranslationCatalog[defaultLang];
@@ -96,6 +103,7 @@ class TranslatableText {
 }
 
 export {
+  defaultLang,
   interpolateString,
   translateFromCatalog,
   mergeTranslationCatalog,
@@ -105,6 +113,7 @@ export {
 };
 
 export type {
+  GbzLanguageCode,
   GbzInterpolationFunction,
   GbzInterpolationParams,
   GbzTranslationCatalog
