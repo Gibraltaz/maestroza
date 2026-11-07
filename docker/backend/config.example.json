@@ -1,0 +1,18 @@
+{
+  "general": {
+    "name": "maestrozo-backend",
+    "description": "Maestrozo backend"
+  },
+  "server": {
+    "port":9101
+  },
+  "store": {
+    "type": "couch-db",
+    "host": "host.docker.internal",
+    "port": 5984,
+    "database": "db_maestrozo_dev",
+    "user": "maestrozo_dev",
+    "password": "<CHANGE_ME>" 
+  },
+  "plugins": [ ]
+}
