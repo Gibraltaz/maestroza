@@ -28,10 +28,10 @@ RUN npm --workspace=translation run build \
 RUN npm prune --omit=dev
 
 #───────────────────────────────
-# RUNTIME
+# RUNTIME BACKEND
 #───────────────────────────────
 
-FROM node:26-alpine
+FROM node:26-alpine as backend 
 WORKDIR /app
 
 COPY --from=builder /app/package*.json ./
@@ -57,11 +57,22 @@ COPY --from=builder /app/backend/dist/ ./backend/dist/
 COPY --from=builder /app/frontend/dist/ ./frontend/dist/
 #COPY --from=builder /app/shell/dist/ ./shell/dist/
 
-#RUN npm ci --omit=dev
 
 COPY ./docker/backend/config.json ./backend/
 
-WORKDIR /app/backend
 ENV NODE_ENV=production
 EXPOSE 9101 
+WORKDIR /app/backend
 CMD ["node", "dist/main.js"]
+
+
+#───────────────────────────────
+# RUNTIME FRONTEND
+#───────────────────────────────
+
+FROM nginx:alpine as frontend
+COPY --from=builder /app/frontend/dist/ /usr/share/nginx/html/
+COPY ./docker/frontend/nginx.conf /etc/nginx/conf.d/default.conf
+EXPOSE 80
+WORKDIR /app/frontend
+CMD ["nginx", "-g", "daemon off;"]

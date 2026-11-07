@@ -17,7 +17,7 @@
   "scripts": {
     "build": "npm run build --workspaces --if-present",
     "test": "npm run rest --workspaces --if-present",
-    "docker": "docker build -t maestrozo -f docker/Dockerfile ."
+    "docker": "docker buildx bake -f docker/docker-bake.json"
   },
     "devDependencies": {
     "@types/node": "26.6.6",

@@ -1,0 +1,28 @@
+{
+  "target": {
+    "backend": {
+      "context": ".",
+      "dockerfile": "docker/Dockerfile",
+      "target": "backend",
+      "tags": [
+        "maestrozo-backend:latest"
+      ]
+    },
+    "frontend": {
+      "context": ".",
+      "dockerfile": "docker/Dockerfile",
+      "target": "frontend",
+      "tags": [
+        "maestrozo-frontend:latest"
+      ]
+    }
+  },
+  "group": {
+    "default": {
+      "targets": [
+        "backend",
+        "frontend"
+      ]
+    }
+  }
+}
