@@ -220,3 +220,32 @@ Licensed under the GNU Lesser General Public License v3.0 or later (LGPL-3.0-or-
 
 See LICENSE file for details.
 
+---
+
+## Docker
+
+You can build docker images with : 
+
+```
+$ npm run docker:build
+```
+
+You can start and stocp docker containers with : 
+
+```
+$ npm run docker:up
+$ npm run docker:down
+```
+
+You can create a .env file by copying dot-env.example file  : 
+
+```
+cp dot-env.example .env
+```
+
+And change following environment variables :
+
+```
+MAESTROZO_DOCKER_BACKEND_PORT=9102
+MAESTROZO_DOCKER_FRONTEND_PORT=8080
+```
