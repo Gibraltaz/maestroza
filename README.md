@@ -237,13 +237,13 @@ $ npm run docker:up
 $ npm run docker:down
 ```
 
-You can create a .env file by copying dot-env.example file  : 
+You can create a `.env` file by copying `dot-env.example` file  : 
 
 ```
 cp dot-env.example .env
 ```
 
-And change following environment variables :
+And change the following environment variables :
 
 ```
 MAESTROZO_DOCKER_BACKEND_PORT=9102
