@@ -4,7 +4,7 @@ services:
     container_name: maestrozo-backend
     image: maestrozo_backend
     ports:
-      - "9101:9101"
+      - "${MAESTROZO_DOCKER_BACKEND_PORT:-9101}:9101"
     networks:
       - maestrozo-network
     restart: always
@@ -14,7 +14,7 @@ services:
     container_name: maestrozo-frontend
     image: maestrozo_frontend
     ports:
-      - "80:8080"
+      - "${MAESTROZO_DOCKER_FRONTEND_PORT:-80}:8080"
     networks:
       - maestrozo-network
     restart: always

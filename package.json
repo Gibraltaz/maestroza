@@ -18,7 +18,8 @@
     "build": "npm run build --workspaces --if-present",
     "test": "npm run rest --workspaces --if-present",
     "docker:build": "docker compose -f docker/docker-compose-build.yml build",
-    "docker:run": "docker compose -f docker/docker-compose.yml up -d"
+    "docker:up": "docker compose -f docker/docker-compose.yml up -d",
+    "docker:down": "docker compose -f docker/docker-compose.yml down"
   },
     "devDependencies": {
     "@types/node": "26.6.6",
