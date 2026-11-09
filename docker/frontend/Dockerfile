@@ -1,4 +1,4 @@
-FROM maestrozo-build as build
+FROM builder as build
 FROM nginx:alpine
 COPY --from=build /app/frontend/dist/ /usr/share/nginx/html/
 COPY ./docker/frontend/nginx.conf /etc/nginx/conf.d/default.conf

@@ -17,7 +17,8 @@
   "scripts": {
     "build": "npm run build --workspaces --if-present",
     "test": "npm run rest --workspaces --if-present",
-    "docker": "docker buildx bake -f docker/docker-bake.json"
+    "docker:build": "docker compose -f docker/docker-compose-build.yml build",
+    "docker:run": "docker compose -f docker/docker-compose.yml up -d"
   },
     "devDependencies": {
     "@types/node": "26.6.6",

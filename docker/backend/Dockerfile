@@ -1,9 +1,5 @@
-#───────────────────────────────
-# RUNTIME BACKEND
-#───────────────────────────────
-
-FROM maestrozo-build:latest as build
-FROM node:26-alpine as backend 
+FROM builder as build
+FROM node:26-alpine as maestrozo_backend
 WORKDIR /app
 
 COPY --from=build /app/package*.json ./

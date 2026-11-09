@@ -1,8 +1,4 @@
-#───────────────────────────────
-# Build
-#───────────────────────────────
-
-FROM node:26-alpine as compile
+FROM node:26-alpine as maestrozo_builder
 WORKDIR /app
 
 COPY ./package*.json ./
@@ -31,4 +27,4 @@ RUN npm --workspace=translation run build \
 RUN npm prune --omit=dev
 
 FROM scratch
-COPY --from=compile /app/ /app/
+COPY --from=maestrozo_builder /app/ /app/

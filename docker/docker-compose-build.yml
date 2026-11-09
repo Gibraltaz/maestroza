@@ -1,0 +1,34 @@
+services:
+
+  maestrozo-builder:
+    image: maestrozo_builder
+    build:
+      context: ..
+      dockerfile: docker/builder/Dockerfile
+
+  maestrozo-backend:
+    container_name: maestrozo-backend
+    image: maestrozo_backend
+    build:
+      context: ..
+      dockerfile: docker/backend/Dockerfile
+      additional_contexts:
+        #builder: "service:maestrozo_builder"
+        builder: docker-image://maestrozo_builder:latest
+    depends_on:
+      - maestrozo-builder
+
+
+  maestrozo-frontend:
+    container_name: maestrozo-frontend
+    image: maestrozo_frontend
+    build:
+      context: ..
+      dockerfile: docker/frontend/Dockerfile
+      additional_contexts:
+        #builder: "service:maestrozo_builder"
+        builder: docker-image://maestrozo_builder:latest
+    depends_on:
+      - maestrozo-builder
+
+
