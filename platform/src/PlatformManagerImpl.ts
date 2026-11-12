@@ -1,5 +1,5 @@
-import { MaestrozoCore, maestrozoCore } from '@maestrozo/core';
-import { MaestrozoStore, rootName, ElementPath, ElementName, MtzElement } from '@maestrozo/kernel';
+import { MaestrozaCore, maestrozaCore } from '@maestroza/core';
+import { MtzStore, rootName, ElementPath, ElementName, MtzElement } from '@maestroza/kernel';
 
 import { MtzPlatformManager } from './PlatformManager.js';
 import { execute as executeOp, MtzOperation } from "./execution.js";
@@ -15,24 +15,24 @@ import { loadPlugin as loadPluginUtil } from './plugin.js';
 class MtzPlatformManagerImpl extends MtzPlatformManager  {
 
   private _initialized = false;
-  private _core: MaestrozoCore;
+  private _core: MaestrozaCore;
 
-  constructor (core: MaestrozoCore) {
+  constructor (core: MaestrozaCore) {
     super();
     this._core = core;
   }
 
-  public async initialize (store?: MaestrozoStore) {
+  public async initialize (store?: MtzStore) {
     if (this._core === null)
       throw new Error("Core not initialized");
     if (this._initialized)
-      throw new Error("Maestrozo Plantform already initialized");
+      throw new Error("Maestroza Plantform already initialized");
 
     // cas des auto-tests qui n'ont pas passé de kernel
     if (store !== undefined) {
       if (this._core !== null)
-        throw new Error("Maestrozo Plantform already initialized");
-      this._core = await maestrozoCore(store);
+        throw new Error("Maestroza Plantform already initialized");
+      this._core = await maestrozaCore(store);
     }
 
 
@@ -84,7 +84,7 @@ class MtzPlatformManagerImpl extends MtzPlatformManager  {
 
   }
 
-  public get core(): MaestrozoCore {
+  public get core(): MaestrozaCore {
     return this._core;
   }
 

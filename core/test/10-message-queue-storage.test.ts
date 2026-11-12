@@ -8,7 +8,7 @@ import { join } from 'node:path';
 import { randomUUID } from 'node:crypto';
 import { rm } from "node:fs/promises";
 
-import { ElementName, ElementPath, MtzElement, FileStore } from '@maestrozo/kernel';
+import { ElementName, ElementPath, MtzElement, FileStore } from '@maestroza/kernel';
 
 import { 
   MESSAGE_TYPE_CHANGE, MtzMessage, MtzMessageQueue, 
@@ -31,7 +31,7 @@ describe("Control message queue storing", () => {
 
 
     beforeAll( async () => {
-      storePath = tmpFilePath('maestrozo')
+      storePath = tmpFilePath('maestroza')
       fileStore = new FileStore(storePath);
       engine = new MtzEngine();
       await engine.initialize(fileStore);

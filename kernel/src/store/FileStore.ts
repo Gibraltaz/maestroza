@@ -4,14 +4,14 @@
  */
 import { readFile, writeFile, access, constants } from "node:fs/promises";
 
-import { MaestrozoStore, StoreKey, StoreValue } from './MaestrozoStore.js';
+import { MtzStore, StoreKey, StoreValue } from './Store.js';
 import { checkStoreKey, checkStoreValue } from './storeUtils.js';
 import { ElementPath, MtzElement } from "../Element.js";
 import { getElementPath, pathToString } from "../path.js";
 
 const encoding = 'utf-8';
 
-class FileStore implements MaestrozoStore{
+class FileStore implements MtzStore{
 
   private _path: string;
   private _map = new Map<StoreKey, StoreValue>();

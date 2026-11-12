@@ -2,7 +2,7 @@ import { checkElement, ElementData, ElementName, ElementPath, MtzElement } from 
 import { buildElementCapabilities } from './elementCapabilities.js';
 import { containerTypeName, rootTypeContainerName } from './global.js';
 import { checkElementName, checkElementPath, getElementPath, pathStartsWith, pathToString, rootName } from './path.js';
-import { MaestrozoStore } from './store/MaestrozoStore.js';
+import { MtzStore } from './store/Store.js';
 import { RawMemoryStore } from './store/RawMemoryStore.js';
 import { containerTypeDeclaration } from './typeHandlers/containerTypeHandler.js';
 import {
@@ -26,12 +26,12 @@ type ContainerDeclaration = {
 
 class MtzTree {
   private _initialized = false;
-  private persistentStore: MaestrozoStore| null = null;
-  private volatileStore: MaestrozoStore = new RawMemoryStore;
+  private persistentStore: MtzStore| null = null;
+  private volatileStore: MtzStore = new RawMemoryStore;
 
-  public async initialize (store: MaestrozoStore) {
+  public async initialize (store: MtzStore) {
     if (this._initialized)
-      throw new Error("Maestrozo's Tree already initialized");
+      throw new Error("Maestroza's Tree already initialized");
 
     this.volatileStore = new RawMemoryStore();
     this.persistentStore = store;

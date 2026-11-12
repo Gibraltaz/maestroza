@@ -5,15 +5,15 @@
 
 import { describe, it, expect } from "vitest";
 
-import { ElementPath } from "@maestrozo/kernel";
+import { ElementPath } from "@maestroza/kernel";
 
-import { MaestrozoPlatform, maestrozoPlatform } from "../src/platform";
+import { MaestrozaPlatform, maestrozaPlatform } from "../src/platform";
 
-describe("Maestrozo platform", async () => {
-  let platform: MaestrozoPlatform | null = null;
+describe("Maestroza platform", async () => {
+  let platform: MaestrozaPlatform | null = null;
 
   it("should instanciate platform", async () => {
-    platform = await maestrozoPlatform();
+    platform = await maestrozaPlatform();
     expect(platform).to.be.instanceOf(Object);
   });
 

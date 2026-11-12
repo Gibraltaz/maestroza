@@ -1,4 +1,4 @@
-import { ElementName, ElementPath, rootName, rootTypeContainerPath } from '@maestrozo/kernel';
+import { ElementName, ElementPath, rootName, rootTypeContainerPath } from '@maestroza/kernel';
 
 // element «#/types/plugin»
 const pluginTypeName = 'plugin' as ElementName;

@@ -1,7 +1,7 @@
 {
-  "name": "@maestrozo/couchdb-store",
+  "name": "@maestroza/couchdb-store",
   "version": "0.0.1",
-  "description": "Maestrozo CouchDB store library",
+  "description": "Maestroza CouchDB store library",
   "author": "Dominique Parisot <dominique@gibraltaz.fr>",
   "license": "LGPL-3.0-or-later",
   "type": "module",
@@ -23,8 +23,8 @@
     "test:watch": "vitest --watch"
   },
   "dependencies": {
-    "@maestrozo/core": "*",
-    "@maestrozo/kernel": "*",
+    "@maestroza/core": "*",
+    "@maestroza/kernel": "*",
     "nano": "^11.0.7",
     "undici": "^8.11.2"
   },

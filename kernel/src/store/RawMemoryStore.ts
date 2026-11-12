@@ -5,7 +5,7 @@
 
 import { ElementPath, MtzElement } from '../Element.js';
 import { pathToString, getElementPath } from '../path.js';
-import { MaestrozoStore, StoreKey, StoreValue } from './MaestrozoStore.js';
+import { MtzStore, StoreKey, StoreValue } from './Store.js';
 import { checkStoreKey, checkStoreValue } from './storeUtils.js';
 
 /*
@@ -13,7 +13,7 @@ import { checkStoreKey, checkStoreValue } from './storeUtils.js';
  * sur des fonctions comme c'est le cas pour les types qui ont un objet
  * TypeHandler avec des pointeurs sur les fonctions de callback.
  */
-class RawMemoryStore implements MaestrozoStore{
+class RawMemoryStore implements MtzStore{
 
   private _map = new Map<StoreKey, StoreValue>();
 

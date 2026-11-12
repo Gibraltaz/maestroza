@@ -1,8 +1,8 @@
 import express from 'express';
 import type { Config } from './config.js';
-import type { MaestrozoPlatform } from '../../platform/dist/platform.js';
+import type { MaestrozaPlatform } from '../../platform/dist/platform.js';
 
-const startServer = (config: Config, _platform: MaestrozoPlatform, _verbose = false): Promise<void> => {
+const startServer = (config: Config, _platform: MaestrozaPlatform, _verbose = false): Promise<void> => {
 
   return new Promise( (resolve, reject): void => {
 

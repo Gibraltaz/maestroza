@@ -8,7 +8,7 @@ import {
   rootName, pathStartsWith, pathToString, rootTypeContainerName, typeElementName,
   TypeDeclaration, CallbackName, CreateChildElementHelper, GetElementHelper, 
   BuildElementDataCallback, BuildElementDataFunction
-} from '@maestrozo/kernel';
+} from '@maestroza/kernel';
 
 import {
   componentTypeName, componentTypePath, inputPinTypePath,

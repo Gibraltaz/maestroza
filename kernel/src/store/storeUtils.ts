@@ -3,7 +3,7 @@
  * Copyright (C) 2026 Executive Gibraltaz
  */
 
-import { StoreKey, StoreValue } from './MaestrozoStore.js';
+import { StoreKey, StoreValue } from './Store.js';
 
 const checkStoreKey = (storeKey: StoreKey): void => {
   if (storeKey === undefined)

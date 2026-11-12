@@ -5,13 +5,13 @@
 
 import { describe, it, expect } from "vitest";
 
-import { MemoryStore } from '@maestrozo/kernel';
+import { MemoryStore } from '@maestroza/kernel';
 
 import { ElementPath, MtzEngine } from "../src/Engine";
 
 // TODO migration kernel nettoyage tests redondants
 
-describe("Maestrozo core", () => {
+describe("Maestroza core", () => {
   let engine = new MtzEngine();
 
   it("should be initialized", async () => {

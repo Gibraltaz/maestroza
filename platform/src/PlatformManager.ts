@@ -3,15 +3,15 @@
  * Copyright (C) 2026 Executive Gibraltaz
  */
 
-import { MaestrozoCore } from '@maestrozo/core';
-import { ElementName, ElementPath, MaestrozoStore, MtzElement } from '@maestrozo/kernel'; // FIXME import direct de core
+import { MaestrozaCore } from '@maestroza/core';
+import { ElementName, ElementPath, MtzStore, MtzElement } from '@maestroza/kernel'; // FIXME import direct de core
 import { MtzOperation } from "./execution.js";
 
 abstract class MtzPlatformManager {
 
-  public abstract initialize (store?: MaestrozoStore): void;
+  public abstract initialize (store?: MtzStore): void;
 
-  public abstract get core(): MaestrozoCore;
+  public abstract get core(): MaestrozaCore;
 
   public abstract execute(what: MtzOperation|MtzOperation[]): Promise<void>;
 

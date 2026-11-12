@@ -1,7 +1,7 @@
 {
-  "name": "@maestrozo/client-lib",
+  "name": "@maestroza/client-lib",
   "version": "0.0.1",
-  "description": "Maestrozo backend client library",
+  "description": "Maestroza backend client library",
   "author": "Dominique Parisot <dominique@gibraltaz.fr>",
   "license": "LGPL-3.0-or-later",
   "type": "module",

@@ -6,20 +6,20 @@ import { processCommandLine } from './command.js';
 import { defaultConfigPath, loadConfig } from './config.js';
 import { shellContext } from './shell.js';
 
-const PROMPT = 'maestrozo> ';
+const PROMPT = 'maestroza> ';
 
 
 
 const main = async () => {
 
   program
-    .name('maestrozo-shell')
-    .description('Maestrozo shell')
+    .name('maestroza-shell')
+    .description('Maestroza shell')
     .version('0.0.1')
     .option('-v, --verbose',       'Verbose mode')
     .option('-f, --config <char>', 'Configuration file path')
-    .option('-h, --host <char>',   'Maestrozo backend host')
-    .option('-p, --port <number>', 'Maestrozo backend port')
+    .option('-h, --host <char>',   'Maestroza backend host')
+    .option('-p, --port <number>', 'Maestroza backend port')
     .parse();
   const options = program.opts();
 

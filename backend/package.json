@@ -1,7 +1,7 @@
 {
-  "name": "maestrozo-backend",
+  "name": "maestroza-backend",
   "version": "0.0.1",
-  "description": "Maestrozo Backend",
+  "description": "Maestroza Backend",
   "license": "LGPL-3.0-or-later",
   "author": "Executive Gibraltaz (contact@gibraltaz.fr)",
   "type": "module",
@@ -14,10 +14,10 @@
     "test_watch": "vitest --watch"
   },
   "dependencies": {
-    "@maestrozo/core": "*",
-    "@maestrozo/couchdb-store": "*",
-    "@maestrozo/kernel": "*",
-    "@maestrozo/platform": "*",
+    "@maestroza/core": "*",
+    "@maestroza/couchdb-store": "*",
+    "@maestroza/kernel": "*",
+    "@maestroza/platform": "*",
     "commander": "^15.0.0",
     "express": "^5.2.1",
     "nconf": "^0.13.0",

@@ -22,7 +22,7 @@ describe("File store", () => {
   let fileStore2: FileStore | null;
 
   beforeAll( () => {
-    storePath = tmpFilePath('maestrozo')
+    storePath = tmpFilePath('maestroza')
   });
 
   afterAll( async () => {

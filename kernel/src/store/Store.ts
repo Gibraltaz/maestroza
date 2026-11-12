@@ -11,9 +11,9 @@ type StoreKey = string & { __brand: 'store-key' };
 // TODO encore utilisé
 type StoreValue = any & { __brand: 'store-value' }; 
 
-interface MaestrozoStore {
+interface MtzStore {
   getElement(elementPath: ElementPath) : Promise<MtzElement | null>;
   setElement(element: MtzElement) : Promise<void>;
 };
 
-export { MaestrozoStore, StoreKey, StoreValue };
+export { MtzStore, StoreKey, StoreValue };

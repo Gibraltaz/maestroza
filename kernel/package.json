@@ -1,7 +1,7 @@
 {
-  "name": "@maestrozo/kernel",
+  "name": "@maestroza/kernel",
   "version": "0.0.2",
-  "description": "Maestrozo kernel library",
+  "description": "Maestroza kernel library",
   "author": "Dominique Parisot <dominique@gibraltaz.fr>",
   "license": "LGPL-3.0-or-later",
   "type": "module",
@@ -23,6 +23,6 @@
     "test:watch": "vitest --watch"
   },
   "dependencies": {
-    "@maestrozo/translation": "*"
+    "@maestroza/translation": "*"
   }
 }

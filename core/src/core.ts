@@ -4,40 +4,40 @@
  */
 
 import {
-  maestrozoKernel, MaestrozoStore, MtzElement, RawMemoryStore,
+  maestrozaKernel, MtzStore, MtzElement, RawMemoryStore,
   TypeDeclaration, ContainerDeclaration, ElementPath,
   ElementName
-} from '@maestrozo/kernel';
+} from '@maestroza/kernel';
 import { MtzEngine } from './Engine.js';
 
 const VERSION = '0.0.1';
 
-type MaestrozoCoreInitializeFunction = (store: MaestrozoStore) => Promise<void>;
-type MaestrozoCoreIsInitializedFunction = () => boolean;
-type MaestrozoCoreGetElementFunction = (elementPath: ElementPath) => Promise<MtzElement|null>;
-type MaestrozoCoreDeclareType = (typeDeclaration: TypeDeclaration) => Promise<MtzElement>;
-type MaestrozoCoreDeclareContainerFunction = (containerDeclaration: ContainerDeclaration) => Promise<MtzElement>;
-type MaestrozoCoreCreateElementFunction =
+type MaestrozaCoreInitializeFunction = (store: MtzStore) => Promise<void>;
+type MaestrozaCoreIsInitializedFunction = () => boolean;
+type MaestrozaCoreGetElementFunction = (elementPath: ElementPath) => Promise<MtzElement|null>;
+type MaestrozaCoreDeclareType = (typeDeclaration: TypeDeclaration) => Promise<MtzElement>;
+type MaestrozaCoreDeclareContainerFunction = (containerDeclaration: ContainerDeclaration) => Promise<MtzElement>;
+type MaestrozaCoreCreateElementFunction =
   (elementName:ElementName, parentPath:ElementPath, typePath:ElementPath, params: Record<string,any>) => Promise<MtzElement>;
-type MaestrozoCoreModifyElementFunction = (element: MtzElement) => Promise<void>;
+type MaestrozaCoreModifyElementFunction = (element: MtzElement) => Promise<void>;
 
-type MaestrozoCore = {
+type MaestrozaCore = {
   version: string,
-  initialize: MaestrozoCoreInitializeFunction,
-  isInitialized: MaestrozoCoreIsInitializedFunction,
-  getElement: MaestrozoCoreGetElementFunction,
-  createElement: MaestrozoCoreCreateElementFunction,
-  modifyElement: MaestrozoCoreModifyElementFunction,
+  initialize: MaestrozaCoreInitializeFunction,
+  isInitialized: MaestrozaCoreIsInitializedFunction,
+  getElement: MaestrozaCoreGetElementFunction,
+  createElement: MaestrozaCoreCreateElementFunction,
+  modifyElement: MaestrozaCoreModifyElementFunction,
   runOnce: () => Promise<void>,
-  declareType: MaestrozoCoreDeclareType ,
-  declareContainer: MaestrozoCoreDeclareContainerFunction,
+  declareType: MaestrozaCoreDeclareType ,
+  declareContainer: MaestrozaCoreDeclareContainerFunction,
 };
 
-const maestrozoCore = async (store?: MaestrozoStore) : Promise<MaestrozoCore> => {
+const maestrozaCore = async (store?: MtzStore) : Promise<MaestrozaCore> => {
 
   if (store === undefined)
     store = new RawMemoryStore();
-  const kernel = await maestrozoKernel(store);
+  const kernel = await maestrozaKernel(store);
 
   const engine = new MtzEngine(kernel);
   await engine.initialize();
@@ -49,7 +49,7 @@ const maestrozoCore = async (store?: MaestrozoStore) : Promise<MaestrozoCore> =>
   return {
     version: VERSION,
     runOnce,
-    initialize: (store: MaestrozoStore) => kernel.initialize(store),
+    initialize: (store: MtzStore) => kernel.initialize(store),
     isInitialized: () => kernel.isInitialized(),
     getElement: async (elementPath: ElementPath) => kernel.getStoredElement(elementPath),
     createElement: async (elementName:ElementName, parentPath:ElementPath, typePath:ElementPath, params: Record<string,any>) =>
@@ -61,5 +61,5 @@ const maestrozoCore = async (store?: MaestrozoStore) : Promise<MaestrozoCore> =>
 };
 
 
-export { maestrozoCore };
-export type { MaestrozoCore };
+export { maestrozaCore };
+export type { MaestrozaCore };

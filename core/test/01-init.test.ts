@@ -4,13 +4,13 @@
  */
 
 import { describe, it, expect } from "vitest";
-import { MaestrozoCore, maestrozoCore } from "../src/core";
+import { MaestrozaCore, maestrozaCore } from "../src/core";
 
-describe("Maestrozo core", async () => {
-  let core: MaestrozoCore | null = null;
+describe("Maestroza core", async () => {
+  let core: MaestrozaCore | null = null;
 
   it("should instanciate platform", async () => {
-    core = await maestrozoCore();
+    core = await maestrozaCore();
     expect(core).to.be.instanceOf(Object);
   });
 

@@ -5,16 +5,16 @@
 
 import { describe, it, expect } from "vitest";
 
-import { ElementName, ElementPath } from '@maestrozo/kernel';
+import { ElementName, ElementPath } from '@maestroza/kernel';
 
-import { MaestrozoPlatform, maestrozoPlatform } from "../src/platform.js";
+import { MaestrozaPlatform, maestrozaPlatform } from "../src/platform.js";
 import { MtzOperationType, MtzCreateElementOperation, MtzDeclareTypeOperation } from '../src/execution.js';
 
 describe("Platform operation", async () => {
-  let platform: MaestrozoPlatform | null = null;
+  let platform: MaestrozaPlatform | null = null;
 
   it("should instanciate platform", async () => {
-    platform = await maestrozoPlatform();
+    platform = await maestrozaPlatform();
     expect(platform).to.be.instanceOf(Object);
   });
 

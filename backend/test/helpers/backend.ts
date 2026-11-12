@@ -68,12 +68,12 @@ const terminateBackend = async (verbose = false): Promise<void> => {
 };
 
 
-const startMaestrozoBackend = async(confPath?:string, verbose=false) => {
-  if (verbose) console.log("Starting maestrozo backend…");
+const startMaestrozaBackend = async(confPath?:string, verbose=false) => {
+  if (verbose) console.log("Starting maestroza backend…");
 
   if (backend !== null) {
     if (verbose) console.log("Backend previously started");
-    throw new Error("Maestrozo backend already started");
+    throw new Error("Maestroza backend already started");
   }
 
   configPath = confPath ? confPath : CONF_FILE;
@@ -163,7 +163,7 @@ const startMaestrozoBackend = async(confPath?:string, verbose=false) => {
   }
 };
 
-const stopMaestrozoBackend = async (verbose = false) => {
+const stopMaestrozaBackend = async (verbose = false) => {
   if (! isBackendRunning())
     return;
   await terminateBackend(verbose);
@@ -194,7 +194,7 @@ const backendJsonPost = async (url:string , parameters: Record<string, string>, 
 }
 
 export {
-  startMaestrozoBackend, stopMaestrozoBackend, isBackendRunning,
+  startMaestrozaBackend, stopMaestrozaBackend, isBackendRunning,
   backendJsonGet, backendJsonPost,
   testConfig,
   sleep

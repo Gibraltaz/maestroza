@@ -1,4 +1,4 @@
-import { ElementName, ElementPath, rootName, rootTypeContainerPath, } from '@maestrozo/kernel';
+import { ElementName, ElementPath, rootName, rootTypeContainerPath, } from '@maestroza/kernel';
 
 const dataTypeName = 'data' as ElementName;
 const dataTypePath = [...rootTypeContainerPath, dataTypeName ];

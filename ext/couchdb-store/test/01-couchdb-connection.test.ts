@@ -7,7 +7,7 @@ import { describe, it, expect } from 'vitest';
 import nconf from 'nconf';
 
 import { CouchDbStore } from '../src/CouchDbStore.js';
-import { ElementName, ElementPath, MtzElement } from '@maestrozo/kernel';
+import { ElementName, ElementPath, MtzElement } from '@maestroza/kernel';
 
 
 const loadConfig = () => {
@@ -15,7 +15,7 @@ const loadConfig = () => {
 };
 
 
-describe("Maestrozo CouchDB store", () => {
+describe("Maestroza CouchDB store", () => {
   let couchDbStore: CouchDbStore | null = null;
 
   const firstElementName = `element-${Date.now()}` as ElementName;

@@ -3,44 +3,44 @@
  * Copyright (C) 2026 Executive Gibraltaz
  */
 
-import { maestrozoCore } from "@maestrozo/core";
-import { ElementName, ElementPath, MaestrozoStore, MtzElement } from "@maestrozo/kernel";
+import { maestrozaCore } from "@maestroza/core";
+import { ElementName, ElementPath, MtzStore, MtzElement } from "@maestroza/kernel";
 
 import { MtzPlatformManagerImpl } from "./PlatformManagerImpl.js";
 import { MtzOperation } from "./execution.js";
 
 const VERSION = '0.0.1';
 
-type MaestrozoUserServiceRegisterFunction = (email: string) => Promise<MtzElement>;
+type MaestrozaUserServiceRegisterFunction = (email: string) => Promise<MtzElement>;
 
-type MeaestrozoUserService = {
-  register: MaestrozoUserServiceRegisterFunction 
+type MeaestrozaUserService = {
+  register: MaestrozaUserServiceRegisterFunction 
 };
 
-//type MeaestrozoTeamService = any;
-//type MeaestrozoOrganizationService = any;
-//type MeaestrozoOfferService = any;
-//type MeaestrozoRequestService = any;
-//type MeaestrozoFormService = any;
+//type MeaestrozaTeamService = any;
+//type MeaestrozaOrganizationService = any;
+//type MeaestrozaOfferService = any;
+//type MeaestrozaRequestService = any;
+//type MeaestrozaFormService = any;
 
 
-type MaestrozoPlatform = {
+type MaestrozaPlatform = {
   version: string,
   getElement: (elementPath: ElementPath) => Promise<MtzElement|null>;
   execute: (what: MtzOperation|MtzOperation[]) => Promise<void>,
   loadPlugin: (name: ElementName, pluginPath: string) => Promise<MtzElement>,
   runOnce: () => Promise<void>, 
-  user: MeaestrozoUserService,
-  //organization: MeaestrozoOrganizationService,
-  //team: MeaestrozoTeamService,
-  //offer: MeaestrozoOfferService,
-  //request: MaestrozoRequestService,
-  //form: MaestrozoFormService
+  user: MeaestrozaUserService,
+  //organization: MeaestrozaOrganizationService,
+  //team: MeaestrozaTeamService,
+  //offer: MeaestrozaOfferService,
+  //request: MaestrozaRequestService,
+  //form: MaestrozaFormService
 };
 
-const maestrozoPlatform = async (store?: MaestrozoStore) : Promise<MaestrozoPlatform> => {
+const maestrozaPlatform = async (store?: MtzStore) : Promise<MaestrozaPlatform> => {
 
-  const core = await maestrozoCore(store);
+  const core = await maestrozaCore(store);
 
   const platformManager = new MtzPlatformManagerImpl(core);
   await platformManager.initialize();
@@ -75,5 +75,5 @@ const maestrozoPlatform = async (store?: MaestrozoStore) : Promise<MaestrozoPlat
 };
 
 
-export { maestrozoPlatform };
-export type { MaestrozoPlatform };
+export { maestrozaPlatform };
+export type { MaestrozaPlatform };

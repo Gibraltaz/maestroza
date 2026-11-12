@@ -4,4 +4,4 @@
  */
 
 // FIXME utile d'avoir main.ts ?
-console.log("Maestrozo core lib");
+console.log("Maestroza core lib");

@@ -5,7 +5,7 @@
 
 import { ElementPath, MtzElement } from '../Element.js';
 import { getElementPath, pathToString } from '../path.js';
-import { MaestrozoStore, StoreKey, StoreValue } from './MaestrozoStore.js';
+import { MtzStore, StoreKey, StoreValue } from './Store.js';
 import { checkStoreKey, checkStoreValue } from './storeUtils.js';
 
 /*
@@ -16,7 +16,7 @@ import { checkStoreKey, checkStoreValue } from './storeUtils.js';
  * Elle ne peut donc pas être utilisée pour stocker les éléments de TypeHandler
  * qui contiennent des objets «TypeHandler» avec des pointeurs sur des fonctions.
  */
-class MemoryStore implements MaestrozoStore{
+class MemoryStore implements MtzStore{
 
   private _map = new Map<StoreKey, StoreValue>();
 

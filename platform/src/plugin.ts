@@ -2,7 +2,7 @@ import { resolve } from 'node:path';
 import { stat } from 'node:fs/promises';
 import { Stats }  from 'node:fs';
 
-import type { ElementName, MtzElement } from "@maestrozo/kernel";
+import type { ElementName, MtzElement } from "@maestroza/kernel";
 import { MtzPlatformManager } from "./PlatformManager.js";
 import { pluginContainerPath, pluginTypePath } from './global.js';
 import { PluginStatus } from './typeHandlers/pluginTypeHandler.js';

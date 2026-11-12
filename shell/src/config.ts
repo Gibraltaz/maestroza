@@ -3,7 +3,7 @@ import os from 'node:os';
 import { Stats }  from 'node:fs';
 import nconf from 'nconf';
 
-const defaultConfigPath = os.homedir() + '/.config/maestrozo/shell.json';
+const defaultConfigPath = os.homedir() + '/.config/maestroza/shell.json';
 
 type Config = {
   server: {

@@ -7,7 +7,7 @@ import {
   ElementData, ElementName, ElementPath, TypeDeclaration, 
   rootName, rootTypeContainerName, typeElementName,
   BuildElementDataCallback, BuildElementDataFunction
-} from '@maestrozo/kernel';
+} from '@maestroza/kernel';
 
 import { pluginTypeName } from '../global.js';
 

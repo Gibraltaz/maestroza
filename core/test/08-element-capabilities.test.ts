@@ -9,7 +9,7 @@ import {
   ElementData, MtzElement, MemoryStore,
   BuildElementDataCallback, BuildElementDataFunction, BuildElementDataHelpers,
   InitializeElementFunction, InitializeElementCallback, MtzElementCapabilities 
-} from '@maestrozo/kernel';
+} from '@maestroza/kernel';
 
 import { MtzEngine, ElementName, ElementPath } from "../src/Engine";
 import { MtzMessageTime } from "../src/MessageQueue";

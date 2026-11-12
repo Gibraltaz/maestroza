@@ -4,9 +4,9 @@
  */
 import { program } from 'commander';
 
-import { maestrozoPlatform } from '@maestrozo/platform';
-import { CouchDbStore } from '@maestrozo/couchdb-store';
-import { MemoryStore, type MaestrozoStore } from '@maestrozo/kernel';
+import { maestrozaPlatform } from '@maestroza/platform';
+import { CouchDbStore } from '@maestroza/couchdb-store';
+import { MemoryStore, type MtzStore } from '@maestroza/kernel';
 
 import { loadConfig, StoreType } from './config.js';
 import { startServer } from './server.js';
@@ -15,8 +15,8 @@ import { loadPluginArray } from './plugin.js';
 const main = async () => {
 
   program
-    .name('maestrozo-backend')
-    .description('Maestrozo backend')
+    .name('maestroza-backend')
+    .description('Maestroza backend')
     .version('0.0.1')
     .option('-v, --verbose',       'Verbose mode')
     .option('-f, --config <char>', 'Configuration file path')
@@ -31,7 +31,7 @@ const main = async () => {
   configPath = configPath.trim();
   const config = await loadConfig(configPath, verbose);
 
-  let store: MaestrozoStore | null = null;
+  let store: MtzStore | null = null;
   switch (config.store.type) {
 
     case StoreType.MEMORY:
@@ -54,7 +54,7 @@ const main = async () => {
 
   if (store === null)
     throw new Error("Store not initialized");
-  const platform = await maestrozoPlatform(store);
+  const platform = await maestrozaPlatform(store);
 
   await loadPluginArray(config.plugins, platform);
 

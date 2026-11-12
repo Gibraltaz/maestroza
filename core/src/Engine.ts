@@ -4,14 +4,14 @@
  */
 
 import {
-  maestrozoKernel, MaestrozoStore, rootTypeContainerName,
+  maestrozaKernel, MtzStore, rootTypeContainerName,
   MtzElement, ElementName, ElementPath, ElementData,
   checkElementName, checkElementPath, rootName, pathStartsWith,
   pathToString, getElementPath, elementPathAreEquals, pathEquals,
-  MaestrozoKernel, TypeDeclaration, TypeHandler, 
+  MaestrozaKernel, TypeDeclaration, TypeHandler, 
   BuildElementDataCallback, BuildElementDataFunction, BuildElementDataHelpers, 
   InitializeElementCallback, InitializeElementFunction,
-} from '@maestrozo/kernel';
+} from '@maestroza/kernel';
 
 import { buildComponentCapabilities } from './componentCapabilities.js';
 
@@ -55,24 +55,24 @@ import {
 
 class MtzEngine {
   private _initialized = false;
-  private _kernel: MaestrozoKernel|null = null;
+  private _kernel: MaestrozaKernel|null = null;
   public timeFunction: MtzTimeFunction = () => Date.now() as MtzMessageTime;
 
   // la plupart dess auto-tests instancient la classe sans passer de kernel en argument
-  constructor(kernel?: MaestrozoKernel) {
+  constructor(kernel?: MaestrozaKernel) {
     if (kernel !== undefined)
       this._kernel = kernel;
   }
 
-  public async initialize (store?: MaestrozoStore) {
+  public async initialize (store?: MtzStore) {
     if (this._initialized)
-      throw new Error("Maestrozo Engine already initialized");
+      throw new Error("Maestroza Engine already initialized");
 
     // cas des auto-tests qui n'ont pas passé de kernel
     if (store !== undefined) {
       if (this._kernel !== null)
-        throw new Error("Maestrozo Engine already initialized");
-      this._kernel = await maestrozoKernel(store);
+        throw new Error("Maestroza Engine already initialized");
+      this._kernel = await maestrozaKernel(store);
     }
 
     if (this._kernel === null) throw new Error("Kernel is not initialized");
@@ -667,7 +667,7 @@ class MtzEngine {
     await this.modifyElement(messageQueueElement);
   }
 
-  get kernel():MaestrozoKernel {
+  get kernel():MaestrozaKernel {
     if (this._kernel === null) throw new Error("Kernel is not initialized");
     return this._kernel;
   }

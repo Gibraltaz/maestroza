@@ -7,7 +7,7 @@ import {
   rootName, pathToString, rootTypeContainerName, typeElementName,
   TypeDeclaration, BuildElementDataCallback, BuildElementDataFunction,
   ElementData, ElementName, ElementPath
-} from '@maestrozo/kernel';
+} from '@maestroza/kernel';
 
 import { dataTypeName } from '../global.js';
 

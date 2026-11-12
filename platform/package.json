@@ -1,5 +1,5 @@
 {
-  "name": "@maestrozo/platform",
+  "name": "@maestroza/platform",
   "version": "0.0.1",
   "description": "",
   "author": "Dominique Parisot <dominique@gibraltaz.fr>",
@@ -23,7 +23,7 @@
     "test:watch": "vitest --watch"
   },
   "dependencies": {
-    "@maestrozo/core": "*",
-    "@maestrozo/kernel": "*"
+    "@maestroza/core": "*",
+    "@maestroza/kernel": "*"
   }
 }

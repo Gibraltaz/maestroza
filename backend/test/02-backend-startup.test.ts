@@ -4,13 +4,13 @@
  */
 
 import { describe, it, expect } from "vitest";
-import { backendJsonGet, startMaestrozoBackend, stopMaestrozoBackend, testConfig } from './helpers/backend.js';
+import { backendJsonGet, startMaestrozaBackend, stopMaestrozaBackend, testConfig } from './helpers/backend.js';
 
 
-describe("Maestrozo core", () => {
+describe("Maestroza core", () => {
 
-  it("should start Maestrozo backend", async () => {
-    await startMaestrozoBackend();
+  it("should start Maestroza backend", async () => {
+    await startMaestrozaBackend();
   }, 10000);
 
   it("should request root API", async () => {
@@ -21,8 +21,8 @@ describe("Maestrozo core", () => {
     expect(res).to.have.property('description', testConfig?.general.description);
   });
 
-  it("should stop Maestrozo backend", async () => {
-    await stopMaestrozoBackend();
+  it("should stop Maestroza backend", async () => {
+    await stopMaestrozaBackend();
   });
 
 });

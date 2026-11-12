@@ -7,10 +7,10 @@ import Nano from 'nano';
 
 import {
   ElementPath, MtzElement,
-  checkStoreValue, getElementPath, MaestrozoStore, pathToString
-} from '@maestrozo/kernel';
+  checkStoreValue, getElementPath, MtzStore, pathToString
+} from '@maestroza/kernel';
 
-class CouchDbStore implements MaestrozoStore{
+class CouchDbStore implements MtzStore{
 
   private _couchDb: any | null = null;
   private _db: any = null;

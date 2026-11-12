@@ -1,5 +1,5 @@
-import { MtzElement, ElementPath, ElementName } from '@maestrozo/kernel';
-import { pathToString } from '@maestrozo/kernel';
+import { MtzElement, ElementPath, ElementName } from '@maestroza/kernel';
+import { pathToString } from '@maestroza/kernel';
 import { MtzTree } from './Tree.js';
 
 type GetElementFunction = (elementPath: ElementPath) => Promise<MtzElement | null>;

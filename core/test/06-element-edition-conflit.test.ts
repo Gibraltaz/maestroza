@@ -5,11 +5,11 @@
 
 import { describe, it, expect } from "vitest";
 
-import { MemoryStore, MtzElement } from '@maestrozo/kernel';
+import { MemoryStore, MtzElement } from '@maestroza/kernel';
 
 import { ElementName, ElementPath, MtzEngine } from "../src/Engine";
 
-describe("Maestrozo core", () => {
+describe("Maestroza core", () => {
   const memoryStore = new MemoryStore();
   let engine = new MtzEngine();
   let componentRef1: MtzElement | null;

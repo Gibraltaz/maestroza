@@ -1,5 +1,5 @@
 import { shellContext, type ShellContext } from './shell.js';
-import { clientInit, pingBackend } from '@maestrozo/client-lib';
+import { clientInit, pingBackend } from '@maestroza/client-lib';
 
 type CommandLineResult = {
   exit?: boolean;

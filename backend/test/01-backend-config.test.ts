@@ -5,20 +5,20 @@
 
 import { describe, it, expect } from "vitest";
 import {
-  startMaestrozoBackend, stopMaestrozoBackend, isBackendRunning,
+  startMaestrozaBackend, stopMaestrozaBackend, isBackendRunning,
   backendJsonGet, testConfig
 } from './helpers/backend.js';
 
-describe("Maestrozo backend", () => {
+describe("Maestroza backend", () => {
 
   it("should detect non existent configuration file", async () => {
     await expect(
-      startMaestrozoBackend('xxx')
+      startMaestrozaBackend('xxx')
     ).rejects.toThrow("Can not read config file «xxx»");
   }, 10000);
 
   it("should start with valid Configuration file", async () => {
-      await startMaestrozoBackend('config-test.json');
+      await startMaestrozaBackend('config-test.json');
   }, 10000);
 
   it("should request root API", async () => {
@@ -31,7 +31,7 @@ describe("Maestrozo backend", () => {
 
   it("should stop backend", async ({skip}) => {
     skip(isBackendRunning() === false, "Backend is not running");
-    await stopMaestrozoBackend();
+    await stopMaestrozaBackend();
   });
 
 });

@@ -1,7 +1,7 @@
 {
-  "name": "maestrozo-shell",
+  "name": "maestroza-shell",
   "version": "0.0.1",
-  "description": "Maestrozo backend shell",
+  "description": "Maestroza backend shell",
   "license": "LGPL-3.0-or-later",
   "author": "Executive Gibraltaz (contact@gibraltaz.fr)",
   "type": "module",
@@ -14,7 +14,7 @@
     "test_watch": "vitest --watch"
   },
   "dependencies": {
-    "@maestrozo/client-lib": "*",
+    "@maestroza/client-lib": "*",
     "commander": "^15.0.0",
     "nconf": "^0.13.0",
     "readline": "^1.3.0",

@@ -5,12 +5,12 @@
 
 import { describe, it, expect } from "vitest";
 
-import { ElementPath, MemoryStore } from '@maestrozo/kernel';
+import { ElementPath, MemoryStore } from '@maestroza/kernel';
 
 import { MtzTree } from "../src/Tree";
 
 
-describe("Maestrozo core", () => {
+describe("Maestroza core", () => {
   let tree = new MtzTree()
 
   it("should be initialized", async () => {
