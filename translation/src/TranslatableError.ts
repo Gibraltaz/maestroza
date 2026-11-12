@@ -2,6 +2,7 @@ import { translate, defaultLang, GbzLanguageCode } from './translation.js';
 
 type MtzErrorCode = string & { __brand : 'err' };
 
+const MtzTranslatableErrorName = 'MtzTranslatableError';
 
 const MtzErrorEnum = {
   INTERNAL_ERROR:   'INTERNAL_ERROR',
@@ -25,14 +26,22 @@ class MtzTranslatableError extends Error {
     errorType: MtzErrorType = MtzErrorEnum.INTERNAL_ERROR
   ) {
     super(translate(defaultLang, msgCode, msgParams));
-    this.name = "MtzTranslatableError";
+    this.name = MtzTranslatableErrorName;
     this._msgCode = msgCode;
     this._msgParams = msgParams;
     this._errorType = errorType;
   }
 
-  translate(lang: GbzLanguageCode ) {
-    return translate(lang, this._msgCode, this._msgParams);
+  translate(languages: GbzLanguageCode|Array<GbzLanguageCode>) {
+    return translate(languages, this._msgCode, this._msgParams);
+  }
+
+  get errorCode() {
+    return this._msgCode;
+  }
+
+  get errorParams() {
+    return this._msgParams
   }
 
   get errorType() {

@@ -9,17 +9,24 @@ import { translateFromCatalog } from '../src/translation.js';
 
 const translationCatalog = {
   en: {
-    'abc' : 'Aen-Ben-Cen',
-    'def' : 'en P1:{{p1}} P2:{{p2}}'
+    'abc': 'Aen-Ben-Cen',
+    'def': 'en P1:{{p1}} P2:{{p2}}',
+    'ghi': 'GHI:en',
+    'jkf': 'JKF:en'
   },
   fr: {
-    'abc' : 'Afr-Bfr-Cfr',
-    'def' : 'fr P1:{{p1}} P2:{{p2}}'
+    'abc': 'Afr-Bfr-Cfr',
+    'def': 'fr P1:{{p1}} P2:{{p2}}',
+    'ghi': 'GHI:fr'
+  },
+  de: {
+    'abc': 'Ade-Bde-Cde',
+    'def': 'de P1:{{p1}} P2:{{p2}}'
   }
+
 }
 
 describe("Message translation", () => {
-
 
   describe("Translation of single message", () => {
 
@@ -37,7 +44,7 @@ describe("Message translation", () => {
 
     it("should translate unknown lang in english", () => {
       expect(
-        translateFromCatalog(translationCatalog, 'de', 'abc' )
+        translateFromCatalog(translationCatalog, 'it', 'abc' )
       ).to.equal("Aen-Ben-Cen");
     });
 
@@ -87,3 +94,31 @@ describe("Message translation", () => {
   });
 
 });
+
+
+describe("Message translation with multiple languages", () => {
+
+  describe("Translation of single message", () => {
+
+    it("should find deutsch translation when available", () => {
+      expect(
+        translateFromCatalog(translationCatalog, [ 'de', 'fr'] , 'abc' )
+      ).to.equal("Ade-Bde-Cde");
+    });
+
+    it("should find french translation when deutsch translation is not available", () => {
+      expect(
+        translateFromCatalog(translationCatalog, [ 'fr', 'de'] , 'ghi' )
+      ).to.equal("GHI:fr");
+    });
+
+    it("should find english translation when deutsch and french translation are not available", () => {
+      expect(
+        translateFromCatalog(translationCatalog, [ 'fr', 'de'] , 'jkf' )
+      ).to.equal("JKF:en");
+    });
+
+  });
+
+});
+

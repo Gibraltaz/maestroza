@@ -10,3 +10,13 @@ export type {
   GbzInterpolationParams,
   GbzTranslationCatalog
 } from './translation.js';
+
+export {
+  MtzTranslatableError,
+  MtzErrorEnum
+} from './TranslatableError.js';
+
+export type {
+  MtzErrorCode,
+  MtzErrorType
+} from './TranslatableError.js';

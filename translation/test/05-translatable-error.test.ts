@@ -23,7 +23,6 @@ describe("Translation catalog", () => {
   });
 
 
-
   it("should initialize translation", () => {
     mergeTranslationCatalog({
       en: {
@@ -31,8 +30,12 @@ describe("Translation catalog", () => {
         customError2: "Custom error n°2 with parameters p1={{p1}} and p2={{p2}}"
       },
       fr: {
-        customError1: "Erreur customisée n°1",
-        customError2: "Erreur customisée n°2 avec les paramètres p1={{p1}} et p2={{p2}}"
+        customError1: "Erreur personnalisée n°1",
+        customError2: "Erreur personnalisée n°2 avec les paramètres p1={{p1}} et p2={{p2}}"
+      },
+      it: {
+        customError1: "Errore personalizzato n°1",
+        customError2: "Errore personalizzato n°2 con i parametri p1={{p1}} e p2={{p2}}"
       }
     });
   });
@@ -55,8 +58,27 @@ describe("Translation catalog", () => {
     expect(error).to.be.instanceOf(MtzTranslatableError);
     const translatedMessage: MtzTranslatableError = error;
     expect(translatedMessage.translate('en')).to.equal("Custom error n°1");
-    expect(translatedMessage.translate('fr')).to.equal("Erreur customisée n°1");
+    expect(translatedMessage.translate('fr')).to.equal("Erreur personnalisée n°1");
     expect(translatedMessage.translate('xx')).to.equal("Custom error n°1");
   });
+
+  it("should translate a translatable error with multiple languages", () => {
+    let error: any|undefined;
+    try {
+      throw new MtzTranslatableError('customError1' as MtzErrorCode, {});
+    }
+    catch (err: any) {
+      error = err;
+    }
+    expect(error).not.to.equal(undefined);
+    expect(error).to.be.instanceOf(MtzTranslatableError);
+    const translatedMessage: MtzTranslatableError = error;
+    expect(translatedMessage.translate([])).to.equal("Custom error n°1");
+    expect(translatedMessage.translate(['it', 'fr'])).to.equal("Errore personalizzato n°1");
+    expect(translatedMessage.translate(['fr', 'it'])).to.equal("Erreur personnalisée n°1");
+    expect(translatedMessage.translate(['xx', 'fr'])).to.equal("Erreur personnalisée n°1");
+    expect(translatedMessage.translate(['xx'])).to.equal("Custom error n°1");
+  });
+
 
 });

@@ -10,7 +10,7 @@ type GbzTranslationCatalog = Record<GbzLanguageCode, GbzTranslationTable>;
 const defaultLang: GbzLanguageCode = 'en';
 
 type GbzTranslationFunction = (
-  lang: GbzLanguageCode,
+  languages: GbzLanguageCode|Array<GbzLanguageCode>,
   msgId:MtzTranslationId,
   msgParams?: Record<string, unknown>
 ) => string;
@@ -26,18 +26,30 @@ const interpolateString: GbzInterpolationFunction = (str: string, params?: GbzIn
   return str;
 };
 
+/**
+ * Renvoie la traduction d'un message en recherchant l'ID du message dans le catalogue de traduction passé en paramètre.
+ * Le message est recherché dans les tables de traduction associées à la langue ou aux langues passées en paramètre.
+ * La table de traduction du langage par défaut est utilisée au final si les message n'a pas été trouvé dans les langues demandées.
+ * Si au final, le message n'a toujours pas été trouvé, la fonction renvoie l'ID du message.
+ * Le dernier paramètre permet de spécifier les éventuelles valeurs à remplacer dans le message.
+ */
 const translateFromCatalog = (
   translationCatalog: GbzTranslationCatalog,
-  lang: GbzLanguageCode,
+  languages: GbzLanguageCode|Array<GbzLanguageCode>,
   msgId:MtzTranslationId,
   msgParams?: Record<string, unknown>
 ) => {
-  let translationTable = translationCatalog[lang];
-  if (translationTable === undefined)
-    translationTable = translationCatalog[defaultLang];
-  let msgStr = translationTable[msgId];
-  if (msgStr === undefined && lang !== defaultLang)
-    msgStr = translationTable[defaultLang];
+  const languageArray = Array.isArray(languages) ? [...languages, defaultLang] : [languages, defaultLang];
+
+  let msgStr: string|undefined;
+  for (const lang of languageArray) {
+    let translationTable = translationCatalog[lang];
+    if (translationTable === undefined)
+      continue;
+    msgStr = translationTable[msgId];
+    if (msgStr !== undefined)
+      break;
+  }
   if (msgStr === undefined)
     msgStr = msgId;
   return interpolateString(msgStr, msgParams);
@@ -59,28 +71,27 @@ const mergeTranslationCatalog = (translationCatalog: GbzTranslationCatalog) => {
   });
 }
 
-
 const translate: GbzTranslationFunction = (
-  lang: GbzLanguageCode,
+  languages: GbzLanguageCode | Array<GbzLanguageCode>,
   msgId:MtzTranslationId,
   msgParams?: Record<string, unknown>
 ) => {
-  // pour les autotests internes, le module n'est pas obligatoirement initialisé
+
+  // Pour les autotests internes, le module n'est pas obligatoirement initialisé.
+  // Dans ce cas, on renvoie l'ID du message suivi des paramètres du message.
   if (globalTranslationCatalog === undefined) {
     let msgStr = msgId;
     if (msgParams !== undefined && Object.keys(msgParams).length > 0)
       msgStr += ' (' + Object.entries(msgParams).map(([key, value]) => `${key}=${String(value)}`).join(', ') + ')';
     return msgStr;
   }
-  let translationTable = globalTranslationCatalog[lang];
-  if (translationTable === undefined)
-    translationTable = globalTranslationCatalog[defaultLang];
-  let msgStr = translationTable[msgId];
-  if (msgStr === undefined && lang !== defaultLang)
-    msgStr = translationTable[defaultLang];
-  if (msgStr === undefined)
-    msgStr = msgId;
-  return interpolateString(msgStr, msgParams);
+
+  return translateFromCatalog(
+    globalTranslationCatalog,
+    languages,
+    msgId,
+    msgParams
+  );
 };
 
 
@@ -95,10 +106,10 @@ class TranslatableText {
     return this._translationId;
   }
 
-  translateFromCatalog(lang: GbzLanguageCode, msgParams?: Record<string, unknown>): string {
+  translateFromCatalog(languages: GbzLanguageCode|Array<GbzLanguageCode>, msgParams?: Record<string, unknown>): string {
     if (globalTranslationCatalog === undefined)
       throw new Error("Translation catalog not initialized");
-    return translateFromCatalog(globalTranslationCatalog, lang, this._translationId, msgParams);
+    return translateFromCatalog(globalTranslationCatalog, languages, this._translationId, msgParams);
   }
 }
 
