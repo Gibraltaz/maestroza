@@ -1,5 +1,6 @@
 {
   "lang": "Français",
   "lang:en": "Anglais",
-  "lang:fr": "Français"
+  "lang:fr": "Français",
+  "error:unknown": "Erreur inconnue ({{message}})"
 }

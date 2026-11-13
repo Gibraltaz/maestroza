@@ -1,4 +1,4 @@
-import type MtzApiContext from './MtzApiContext.js';
+import type MtzApiContext from './api.js';
 
 // ajouter la propriété mtzApiContext à l'interface de Express.Request
 declare global {
