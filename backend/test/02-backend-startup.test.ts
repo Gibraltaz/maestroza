@@ -7,9 +7,9 @@ import { describe, it, expect } from "vitest";
 import { backendJsonGet, startMaestrozaBackend, stopMaestrozaBackend, testConfig } from './helpers/backend.js';
 
 
-describe("Maestroza core", () => {
+describe("Maestroza backend", () => {
 
-  it("should start Maestroza backend", async () => {
+  it("should start backend daemon", async () => {
     await startMaestrozaBackend();
   }, 10000);
 
@@ -21,7 +21,7 @@ describe("Maestroza core", () => {
     expect(res).to.have.property('description', testConfig?.general.description);
   });
 
-  it("should stop Maestroza backend", async () => {
+  it("should stop backend daemon", async () => {
     await stopMaestrozaBackend();
   });
 

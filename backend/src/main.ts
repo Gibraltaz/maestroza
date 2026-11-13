@@ -7,10 +7,14 @@ import { program } from 'commander';
 import { maestrozaPlatform } from '@maestroza/platform';
 import { CouchDbStore } from '@maestroza/couchdb-store';
 import { MemoryStore, type MtzStore } from '@maestroza/kernel';
+import { mergeTranslationCatalog } from '@maestroza/translation';
 
 import { loadConfig, StoreType } from './config.js';
 import { startServer } from './server.js';
 import { loadPluginArray } from './plugin.js';
+
+import enTranslationCatalog from './translations/en.json' with { type: 'json'};
+import frTranslationCatalog from './translations/fr.json' with { type: 'json'};
 
 const main = async () => {
 
@@ -55,6 +59,10 @@ const main = async () => {
   if (store === null)
     throw new Error("Store not initialized");
   const platform = await maestrozaPlatform(store);
+  mergeTranslationCatalog({
+    en: enTranslationCatalog,
+    fr: frTranslationCatalog
+  });
 
   await loadPluginArray(config.plugins, platform);
 

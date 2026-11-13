@@ -11,19 +11,22 @@
     "start": "node dist/main.js",
     "dev": "tsx watch src/main.ts",
     "test": "vitest run --no-file-parallelism",
-    "test_watch": "vitest --watch"
+    "test:watch": "vitest --watch"
   },
   "dependencies": {
     "@maestroza/core": "*",
     "@maestroza/couchdb-store": "*",
     "@maestroza/kernel": "*",
     "@maestroza/platform": "*",
+    "@maestroza/translation": "*",
+    "accept-language-parser": "^1.5.0",
     "commander": "^15.0.0",
     "express": "^5.2.1",
     "nconf": "^0.13.0",
     "vitest": "^5.0.5"
   },
   "devDependencies": {
+    "@types/accept-language-parser": "^1.5.8",
     "@types/express": "^5.0.6"
   }
 }
