@@ -7,28 +7,15 @@ import type { MaestrozaPlatform } from '@maestroza/platform';
 
 import type { Config } from './config.js';
 
-import { declareApiRoutes, createApiContext } from './api.js';
+import { createApiContext, declareApiRoutes } from './api.js';
 import type {
-    MtzApiContext,
+  MtzApiContext,
   MtzApiContextSendResponseFunction,
   MtzApiMethod,
   MtzApiRouteCallback,
   MtzDeclareRouteFunction,
 } from './api.js';
 
-const initializeApiContextMiddleware = (request: Request, response: Response, next: NextFunction) => {
-
-  const acceptedLanguages: Array<GbzLanguageCode> = parser
-      .parse( request.headers['accept-language'])
-      .map( language => language.code.split('-')[0] ?? '');
-
-  const sendResponseFunction: MtzApiContextSendResponseFunction = (data: unknown, status: number) => {
-    response.status(status).json(data);
-  };
-
-  request.mtzApiContext = createApiContext(sendResponseFunction, acceptedLanguages);
-  next();
-};
 
 
 const startServer = (config: Config, _platform: MaestrozaPlatform, _verbose = false): Promise<void> => {
@@ -38,7 +25,6 @@ const startServer = (config: Config, _platform: MaestrozaPlatform, _verbose = fa
     const port = config.server.port;
     const app = express();
     app.use(express.json());
-    app.use(initializeApiContextMiddleware);
 
     /**
      * Cette fonction permet de déclarer au niveau de Express une route en fonction de sa méthode HTTP.
@@ -62,12 +48,34 @@ const startServer = (config: Config, _platform: MaestrozaPlatform, _verbose = fa
       if (expressRouteDeclarationFunction === undefined)
         throw new Error(`Invalid API method «${routeMethod}»`);
 
-      // declare route
-      expressRouteDeclarationFunction(routePath, (request: Request, _response: Response, _nextFunction: NextFunction) => {
-        // FIXME le contexte ne peut-il pas être créé ici plutôt que dans une middleware Express ?
-        const apiContext: MtzApiContext = request.mtzApiContext;
+      /**
+       * Cette fonction sert d'intermédiaire entre Express et la fonction de rappel de la route.
+       * Elle est déclenchée lorsque la route est appelée et elle appelle la fonction 
+       * de traitement associée à la route.
+       * Elle passe à cette fonction un contexte lié à la requête qui contient : 
+       *   • une fonction permettant de renvoyer le résultat sous forme de données ou erreur
+       *     en appelant la fonction de Express qui permet de renvoyer des données au format JSON.
+       *   • un tableau contenant la ou les langues acceptées par l'entête HTTP «accepted-language»
+       *     de la requête.
+       */
+      const callback:RequestHandler = (request: Request, response: Response) => {
+
+        const acceptedLanguages: Array<GbzLanguageCode> = parser
+            .parse( request.headers['accept-language'])
+            .map( language => language.code.split('-')[0] ?? '');
+
+        const sendResponseFunction: MtzApiContextSendResponseFunction = (data: unknown, status: number) => {
+          response.status(status).json(data);
+        };
+
+        const apiContext = createApiContext(sendResponseFunction, acceptedLanguages);
+
         routeCallback(apiContext);
-      });
+      }
+
+      // declare route
+      expressRouteDeclarationFunction(routePath, callback);
+
     };
 
     declareApiRoutes(declareExpressRouteFunction);

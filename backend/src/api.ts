@@ -3,6 +3,10 @@ import type { GbzLanguageCode, MtzErrorCode, MtzErrorType } from '@maestroza/tra
 
 import { apiV1 } from './api-v1.js';
 
+/**
+ * table de conversion entre les types d'erreur d'erreur maestroza
+ * et les status HTTP renvoyés par l'API
+ */
 const errorTypeToHttpStatus : Record<MtzErrorType, number> = {
   [MtzErrorEnum.NOT_FOUND]: 404,
   [MtzErrorEnum.ALREADY_EXISTS]: 500,
@@ -19,6 +23,20 @@ type MtzApiContext = {
   sendError (mtzError: MtzTranslatableError): Promise<void>
 };
 
+/**
+ * Fonction de rappel associée à une route de l'API.
+ * Elle reçoit en argument un contexte propre à la requête exécutée.
+ * Ce contexte contient par exemple la ou les langues acceptées par le client.
+ * La fonction peut :
+ * • soit renvoyer des données qui seront retournées dans la propriété «data»
+ *   du corps de la réponse au format JSON.
+ *   Le status HTTP status vaudra alors 200.
+ * • soit générer une erreur  dont le message sera renvoyé dans la propriété «error»
+ *   du corps de la réponse au format JSON.
+ *   Le status HTTP status sera déterminé en fonction du type de l'erreur.
+ *   Pour une erreur MtzTranslatableError, il sera déterminé en fonction du type de l'erreur
+ *   et pour tout autre type d'erreur il faudra 500.
+ */
 type MtzApiHandler = (context: MtzApiContext) => Promise<any>;
 
 type MtzApiMethod = 'GET' | 'POST' | 'PUT' | 'DELETE';
