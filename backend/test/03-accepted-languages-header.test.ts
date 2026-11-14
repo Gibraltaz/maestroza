@@ -18,7 +18,7 @@ describe("Maestroza backend", () => {
   });
 
   it("should use english translations when language is not specified", async () => {
-    const res = await backendJsonGet('api/v1/lang', { lang: 'fr'});
+    const res = await backendJsonGet('api/v1/util/lang', { lang: 'fr'});
     expect(res).not.to.equal(null);
     expect(res).to.be.instanceOf(Object);
     expect(res).to.have.property('data');
@@ -26,7 +26,7 @@ describe("Maestroza backend", () => {
   });
 
   it("should use french translation when fr lang is specified", async () => {
-    const res = await backendJsonGet('api/v1/lang', { lang: 'fr'});
+    const res = await backendJsonGet('api/v1/util/lang', { lang: 'fr'});
     expect(res).not.to.equal(null);
     expect(res).to.be.instanceOf(Object);
     expect(res).to.have.property('data');
@@ -34,7 +34,7 @@ describe("Maestroza backend", () => {
   });
 
   it("should use english translation when unsupported language is specified", async () => {
-    const res = await backendJsonGet('api/v1/lang', { lang: 'zz'});
+    const res = await backendJsonGet('api/v1/util/lang', { lang: 'zz'});
     expect(res).not.to.equal(null);
     expect(res).to.be.instanceOf(Object);
     expect(res).to.have.property('data');
@@ -43,7 +43,7 @@ describe("Maestroza backend", () => {
 
 
   it("should use first language translation when two supported languages are specified", async () => {
-    const res = await backendJsonGet('api/v1/lang', { lang: 'fr, en'});
+    const res = await backendJsonGet('api/v1/util/lang', { lang: 'fr, en'});
     expect(res).not.to.equal(null);
     expect(res).to.be.instanceOf(Object);
     expect(res).to.have.property('data');
@@ -51,7 +51,7 @@ describe("Maestroza backend", () => {
   });
 
   it("should use second translation when first language is not supported", async () => {
-    const res = await backendJsonGet('api/v1/lang', { lang: 'zz, en'});
+    const res = await backendJsonGet('api/v1/util/lang', { lang: 'zz, en'});
     expect(res).not.to.equal(null);
     expect(res).to.be.instanceOf(Object);
     expect(res).to.have.property('data');

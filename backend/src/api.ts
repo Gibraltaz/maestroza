@@ -17,10 +17,12 @@ const errorTypeToHttpStatus : Record<MtzErrorType, number> = {
 
 type MtzApiContextSendResponseFunction = (data: unknown, status: number) => void;
 
+
 type MtzApiContext = {
   acceptedLanguages: Array<GbzLanguageCode>,
-  sendData (data: unknown): Promise<void>,
-  sendError (mtzError: MtzTranslatableError): Promise<void>
+  parameters: Record<string, any>,
+  sendData (data: unknown): Promise<void>, // FIXME no more used ?
+  sendError (mtzError: MtzTranslatableError): Promise<void> // FIXME no more used ?
 };
 
 /**
@@ -63,11 +65,13 @@ type MtzDeclareRouteFunction = (apiMethod: MtzApiMethod, routePath: string, rout
 
 const createApiContext = (
   sendResponseFunction: MtzApiContextSendResponseFunction,
-  acceptedLanguages: Array<GbzLanguageCode>
+  acceptedLanguages: Array<GbzLanguageCode>,
+  parameters: Record<string, any>
 ): MtzApiContext => {
 
   return {
     acceptedLanguages,
+    parameters,
 
     sendData: async(data: unknown) => {
       const jsonBody = {

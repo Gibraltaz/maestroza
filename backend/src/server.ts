@@ -9,14 +9,11 @@ import type { Config } from './config.js';
 
 import { createApiContext, declareApiRoutes } from './api.js';
 import type {
-  MtzApiContext,
   MtzApiContextSendResponseFunction,
   MtzApiMethod,
   MtzApiRouteCallback,
   MtzDeclareRouteFunction,
 } from './api.js';
-
-
 
 const startServer = (config: Config, _platform: MaestrozaPlatform, _verbose = false): Promise<void> => {
 
@@ -60,6 +57,14 @@ const startServer = (config: Config, _platform: MaestrozaPlatform, _verbose = fa
        */
       const callback:RequestHandler = (request: Request, response: Response) => {
 
+        const parameters: Record<string, any> = {};
+
+        Object.entries(request.query).forEach(
+          ([key, value]) => {
+            parameters[key] = value;
+          }
+        );
+
         const acceptedLanguages: Array<GbzLanguageCode> = parser
             .parse( request.headers['accept-language'])
             .map( language => language.code.split('-')[0] ?? '');
@@ -68,7 +73,7 @@ const startServer = (config: Config, _platform: MaestrozaPlatform, _verbose = fa
           response.status(status).json(data);
         };
 
-        const apiContext = createApiContext(sendResponseFunction, acceptedLanguages);
+        const apiContext = createApiContext(sendResponseFunction, acceptedLanguages, parameters);
 
         routeCallback(apiContext);
       }
